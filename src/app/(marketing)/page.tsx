@@ -1,0 +1,47 @@
+export default function LandingPage() {
+  return (
+    <section className="space-y-10 text-center">
+      <p className="mx-auto inline-flex rounded-full bg-gray-100 px-4 py-1 text-xs font-semibold tracking-widest text-gray-600">
+        لوحة تحكم مجانية بالكامل
+      </p>
+      <div className="space-y-6">
+        <h1 className="text-4xl font-semibold leading-tight text-gray-900 sm:text-5xl">
+          تحكّم في متجرك الإلكتروني من واجهة واحدة
+        </h1>
+        <p className="mx-auto max-w-2xl text-lg text-gray-600">
+          TailAdmin بيقدّم لك أفضل تجربة لإدارة الطلبات، العملاء، والمبيعات مع
+          Dashboards جاهزة للأدمن والمزود.
+        </p>
+      </div>
+      <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a
+          href="/login"
+          className="w-full rounded-full bg-gray-900 px-6 py-3 text-center text-white sm:w-auto"
+        >
+          جرّب لوحة التحكم
+        </a>
+        <a
+          href="https://github.com/tailadmin"
+          target="_blank"
+          rel="noreferrer"
+          className="w-full rounded-full border border-gray-300 px-6 py-3 text-center text-gray-700 sm:w-auto"
+        >
+          شاهد السورس
+        </a>
+      </div>
+      <div className="rounded-3xl border border-gray-200 bg-gray-50 p-8 text-left">
+        <p className="text-sm font-semibold uppercase tracking-widest text-gray-500">
+          جاهز للاستخدام
+        </p>
+        <h2 className="mt-2 text-2xl font-semibold text-gray-900">
+          متابعات لحظية للأداء والمبيعات، مع Widgets جاهزة.
+        </h2>
+        <p className="mt-4 text-gray-600">
+          فعّل لوحة الأدمن أو المزود فوراً، وابدأ بتخصيصها حسب احتياج مشروعك.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+

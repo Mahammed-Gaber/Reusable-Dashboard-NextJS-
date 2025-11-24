@@ -1,32 +1,37 @@
 // middleware.ts
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
 
-export async function middleware(req: NextRequest) {
-    console.log("req");
+const PUBLIC_PATHS = ["/", "/login"];
+
+export function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;
-  const token = req.cookies.get('token');
-  console.log("token", token);
-  // صفحات عامة (مش محتاجة auth)
-  if (pathname.startsWith('/login') || pathname.startsWith('/_next') || pathname === '/favicon.ico') {
-    return NextResponse.next();
-  }
+  const token = req.cookies.get("token")?.value;
+  const role = req.cookies.get("role")?.value;
 
-  // لو مفيش تسجيل دخول → Landing
-  if (!token?.value) {
-    if (pathname !== '/') {
-      return NextResponse.redirect(new URL('/', req.url));
+  const isPublic =
+    PUBLIC_PATHS.includes(pathname) ||
+    pathname.startsWith("/_next") ||
+    pathname === "/favicon.ico";
+
+  if (!token) {
+    if (!isPublic) {
+      return NextResponse.redirect(new URL("/", req.url));
     }
     return NextResponse.next();
   }
 
-  // لو مسجل دخول وداخل على الـ Root → يروح Dashboard
-  if (pathname === '/') {
-    return NextResponse.redirect(new URL('/dashboards', req.url));
+  if (token && isPublic) {
+    return NextResponse.redirect(new URL("/dashboard", req.url));
+  }
+
+  if (pathname.startsWith("/dashboard") && !role) {
+    return NextResponse.redirect(new URL("/", req.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/', '/dashboard/:path*', '/login'],
+  matcher: ["/", "/login", "/dashboard/:path*"],
+  runtime: "nodejs",
 };

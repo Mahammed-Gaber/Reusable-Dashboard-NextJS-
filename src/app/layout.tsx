@@ -13,8 +13,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-  console.log('first')
+  console.log("RootLayout");
   return (
     <html lang="en">
       <body className={`${outfit.className} dark:bg-gray-900`}>
