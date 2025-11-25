@@ -1,27 +1,28 @@
+// app/(dashboard)/layout.tsx
 import { cookies } from "next/headers";
-
-type DashboardLayoutProps = {
-  children: React.ReactNode;
-  admin: React.ReactNode;
-  provider: React.ReactNode;
-};
+import type { ReactNode } from "react";
 
 export default async function DashboardLayout({
-  children,
   admin,
   provider,
-}: DashboardLayoutProps) {
+  children,
+}: {
+  admin: ReactNode;
+  provider: ReactNode;
+  children: ReactNode;
+}) {
   const role = (await cookies()).get("role")?.value;
-  console.log(role);
+
+  console.log("Dashboard layout role:", role);
+
   if (role === "admin") {
-    return admin;
+    return <>{admin}</>;
   }
 
   if (role === "provider") {
-    return provider;
+    return <>{provider}</>;
   }
 
-  return children;
+  // لو مفيش role → يرجع الـ landing (children)
+  return <>{children}</>;
 }
-
-
