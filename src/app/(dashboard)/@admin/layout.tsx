@@ -6,7 +6,7 @@ import AppSidebar from "@/layout/AppSidebar";
 import Backdrop from "@/layout/Backdrop";
 import React from "react";
 
-export default function ProviderLayout({
+export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -32,7 +32,10 @@ export default function ProviderLayout({
         {/* Header */}
         <AppHeader />
         {/* Page Content */}
-        <div className="p-4 mx-auto max-w-(--breakpoint-2xl) md:p-6">{children}</div>
+        <div className="p-4 mx-auto max-w-(--breakpoint-2xl) md:p-6">
+          <h1 className="flex items-center justify-center text-2xl font-bold text-center w-full">Admin Layout</h1>
+          {children}
+        </div>
       </div>
     </div>
   );

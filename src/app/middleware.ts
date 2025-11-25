@@ -21,10 +21,10 @@ export function middleware(req: NextRequest) {
   }
 
   if (token && isPublic) {
-    return NextResponse.redirect(new URL("/dashboard", req.url));
+    return NextResponse.redirect(new URL("/", req.url));
   }
 
-  if (pathname.startsWith("/dashboard") && !role) {
+  if (!role) {
     return NextResponse.redirect(new URL("/", req.url));
   }
 
@@ -32,6 +32,6 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/login", "/dashboard/:path*"],
+  matcher: ["/", "/login", "/(.*)"],
   runtime: "nodejs",
 };
