@@ -95,9 +95,24 @@ const othersItems: NavItem[] = [
   // },
 ];
 
-const AppSidebar: React.FC<{ role: "admin" | "provider" }> = ({ role }) => {
+const toDashboardHref = (path: string) => {
+  if (path === "/" || path === "") {
+    return "/dashboard";
+  }
+  return `/dashboard${path}`;
+};
+
+const normalizeDashboardPath = (value: string) => {
+  if (value === "/") return "/";
+  return value.startsWith("/dashboard")
+    ? value.replace(/^\/dashboard/, "") || "/"
+    : value;
+};
+
+const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
   const pathname = usePathname();
+  const activePath = normalizeDashboardPath(pathname);
   const t = useTranslations("sidebar");
   const renderMenuItems = (
     navItems: NavItem[],
@@ -145,7 +160,7 @@ const AppSidebar: React.FC<{ role: "admin" | "provider" }> = ({ role }) => {
           ) : (
             nav.path && (
               <Link
-                href={`/${role}/${nav.path}`}
+                href={toDashboardHref(nav.path)}
                 className={`menu-item group ${
                   isActive(nav.path) ? "menu-item-active" : "menu-item-inactive"
                 }`}
@@ -182,7 +197,7 @@ const AppSidebar: React.FC<{ role: "admin" | "provider" }> = ({ role }) => {
                 {nav.subItems.map((subItem) => (
                   <li key={subItem.name}>
                     <Link
-                      href={`/${role}/${subItem.path}`}
+                      href={toDashboardHref(subItem.path)}
                       className={`menu-dropdown-item ${
                         isActive(subItem.path)
                           ? "menu-dropdown-item-active"
@@ -234,8 +249,10 @@ const AppSidebar: React.FC<{ role: "admin" | "provider" }> = ({ role }) => {
   );
   const subMenuRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
-  // const isActive = (path: string) => path === pathname;
-   const isActive = useCallback((path: string) => path === pathname, [pathname]);
+  const isActive = useCallback(
+    (path: string) => path === activePath,
+    [activePath]
+  );
 
   useEffect(() => {
     // Check if the current path matches any submenu item
