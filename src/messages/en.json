@@ -1,0 +1,21 @@
+{
+  "marketing": {
+    "badge": "Completely free dashboard",
+    "title": "Control your business from a single dashboard",
+    "description": "TailAdmin helps you track orders, customers and sales with ready-made dashboards for every role.",
+    "primaryCta": "Try the dashboard",
+    "secondaryCta": "Browse the code",
+    "pill": "Ready to use",
+    "featureTitle": "Live insights with ready-made widgets",
+    "featureDescription": "Enable the admin or provider workspace instantly and tailor it to your team’s needs."
+  },
+  "sidebar": {
+    "menu": "Menu",
+    "others": "Others"
+  },
+  "locale": {
+    "english": "English",
+    "arabic": "Arabic"
+  }
+}
+

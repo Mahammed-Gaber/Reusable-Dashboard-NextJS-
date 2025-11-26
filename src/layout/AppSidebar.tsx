@@ -18,6 +18,7 @@ import {
   UserCircleIcon,
 } from "../icons/index";
 import SidebarWidget from "./SidebarWidget";
+import { useTranslations } from "next-intl";
 
 type NavItem = {
   name: string;
@@ -97,6 +98,7 @@ const othersItems: NavItem[] = [
 const AppSidebar: React.FC<{ role: "admin" | "provider" }> = ({ role }) => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
   const pathname = usePathname();
+  const t = useTranslations("sidebar");
   const renderMenuItems = (
     navItems: NavItem[],
     menuType: "main" | "others"
@@ -347,7 +349,7 @@ const AppSidebar: React.FC<{ role: "admin" | "provider" }> = ({ role }) => {
                 }`}
               >
                 {isExpanded || isHovered || isMobileOpen ? (
-                  "Menu"
+                  t("menu")
                 ) : (
                   <HorizontaLDots />
                 )}
@@ -364,7 +366,7 @@ const AppSidebar: React.FC<{ role: "admin" | "provider" }> = ({ role }) => {
                 }`}
               >
                 {isExpanded || isHovered || isMobileOpen ? (
-                  "Others"
+                  t("others")
                 ) : (
                   <HorizontaLDots />
                 )}
