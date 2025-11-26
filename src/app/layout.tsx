@@ -24,7 +24,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang={locale}>
+    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
       <body className={`${outfit.className} dark:bg-gray-900`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider>

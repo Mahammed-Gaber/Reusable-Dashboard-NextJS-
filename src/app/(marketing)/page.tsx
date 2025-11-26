@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 
 export default async function LandingPage() {
-  const t = await getTranslations("marketing");
+  const t = await getTranslations("landing");
 
   return (
     <section className="space-y-10 text-center">

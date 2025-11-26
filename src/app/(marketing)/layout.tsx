@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LocaleSwitcher from "@/components/common/LocaleSwitcher";
 
 type MarketingLayoutProps = {
   children: React.ReactNode;
@@ -23,6 +24,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
               حمل النسخة
             </a>
           </nav>
+          <LocaleSwitcher />
         </div>
       </header>
 

@@ -12,7 +12,7 @@ import ProviderHome from "./(dashboard)/provider/page";
 export default async function RootPage() {
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value ?? "demo-token";
-  const role = cookieStore.get("role")?.value ?? "provider";
+  const role = cookieStore.get("role")?.value ?? "admin";
 
   if (!token) {
     return (

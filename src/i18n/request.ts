@@ -19,9 +19,19 @@ export default getRequestConfig(async () => {
     (cookieLocale && locales.includes(cookieLocale) ? cookieLocale : undefined) ??
     normalizeLocale(headerLocale);
 
+  const [common, landing, sidebar] = await Promise.all([
+    import(`../messages/${locale}/common.json`).then((mod) => mod.default),
+    import(`../messages/${locale}/landing.json`).then((mod) => mod.default),
+    import(`../messages/${locale}/sidebar.json`).then((mod) => mod.default),
+  ]);
+
   return {
     locale,
-    messages: (await import(`../messages/${locale}.json`)).default,
+    messages: {
+      common,
+      landing,
+      sidebar,
+    },
   };
 });
 
