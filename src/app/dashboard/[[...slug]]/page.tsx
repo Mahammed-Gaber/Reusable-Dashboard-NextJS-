@@ -18,8 +18,8 @@ export default async function DashboardSlugPage({ params }: DashboardSlugPagePro
     // const token = cookieStore.get("token")?.value;
     // const roleCookie = cookieStore.get("role")?.value;
     // const cookieStore = await cookies();
-    const token = "demo-token";
-    const roleCookie = "provider";
+    const token = null;
+    const roleCookie = null;
   
     if (!token) redirect("/");
     if (!roleCookie) redirect("/login");

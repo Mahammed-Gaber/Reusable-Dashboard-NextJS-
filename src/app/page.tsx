@@ -8,8 +8,8 @@ export default function RootPage() {
 //   const cookieStore = await cookies();
 //   const token = cookieStore.get("token")?.value ?? "undefined";
 //   const role = cookieStore.get("role")?.value ?? "admin";
-  const token = "demo-token";
-  const role = "provider";
+  const token = null;
+  const role = null;
 
   if (token && role) {
     redirect("/dashboard");
